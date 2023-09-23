@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron p-3 mb-2 bg-success-subtle text-emphasis-success">
+    <h1 class="display-4">Bienvenidos a mi tienda virtual</h1>
+    <p class="lead">Diseñamos los mejores momentos, Deja tus eventos en nuestras manos <br> ¡Creatividad y Elegancia!</p>
+    <hr class="my-4">
+    <p>as click en el siguiente boton para acceder a mas informacion</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">Más Información</a>
+    </p>
+  </div>
+    <div class="container">
+        <div class="row">
+        {% for object in object_list %}
+        <div class="col-4">
+            <a href="{{ object.thumbnail.url  }}">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ object.thumbnail.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="{{ object.thumbnail.url  }}"></a>
+                        <h5 class="card-title">{{ object.title }}</h5>
+                    </a>
+                    <p class="card-text">{{ object.content|truncatechars:40 }} </p>
+
+                    <hr>
+
+                    <p>
+                        <spam><i class="fas fa-thumbs-up"> </i> {{ object.get_like_count }} </span>
+                        <spam><i class="fas fa-eye"> </i> {{ object.get_view_count }} </span>
+                        <spam><i class="fas fa-comment"> </i> {{ object.get_comment_count }} </span>
+                    </p>
+                    <p class="card-text">
+                        {{ object.publish_date|timesince }} ago
+            </div>
+        </div>
+        </a>
+    </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
